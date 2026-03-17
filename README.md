@@ -1,28 +1,28 @@
-# Менеджер финансовых транзакций
+# Financial Transaction Manager
 
-Монолитное приложение для управления финансовыми транзакциями пользователей на базе **Django + DRF**, **MySQL**, **Celery**, с мок-сервисом PayPal и observability-стеком **Grafana Loki**.
+A monolithic application for managing users' financial transactions based on **Django + DRF**, **MySQL**, **Celery**, with a mock PayPal service and observability stack **Grafana Loki**.
 
-## Возможности
+## Features
 
-- CRUD транзакций (user_id, amount, type: deposit/withdrawal/payment, status, timestamp)
-- Идемпотентность через idempotency keys
-- Дедупликация транзакций
-- Аудит-лог всех операций
-- Фоновые задачи Celery (подтверждение транзакций, уведомления)
-- Мок-сервис PayPal (создание, подтверждение, webhook-обработка)
-- Django ORM с транзакциями БД для консистентности
-- JSON-логирование в stdout (включая Celery)
+- CRUD transactions (user_id, amount, type: deposit/withdrawal/payment, status, timestamp)
+- Idempotency via idempotency keys
+- Transaction deduplication
+- Audit log of all operations
+- Celery background tasks (transaction confirmation, notifications)
+- Mock PayPal service (create, confirm, webhook handling)
+- Django ORM with DB transactions for consistency
+- JSON logging to stdout (including Celery)
 - Centralized logging: Loki + Promtail + Grafana
 - Docker + docker-compose (web, db, celery_worker, redis, loki, promtail, grafana)
 
-## Стек технологий
+## Technology Stack
 
-| Компонент | Технология |
-|-----------|------------|
-| Backend | Django 5.x + DRF |
-| БД | MySQL 8 |
-| Очереди | Celery + Redis |
-| Логи | python-json-logger → stdout |
-| Сбор логов | Promtail → Loki |
-| Визуализация | Grafana |
-| Контейнеризация | Docker + docker-compose |
+| Component | Technology                |
+|-----------|--------------------------|
+| Backend   | Django 5.x + DRF         |
+| Database  | MySQL 8                  |
+| Queues    | Celery + Redis           |
+| Logging   | python-json-logger → stdout |
+| Log Collector | Promtail → Loki      |
+| Visualization | Grafana              |
+| Containerization | Docker + docker-compose |
